@@ -1,20 +1,15 @@
 <?php
     namespace App\Dao;
 
-    class User {
-        private static $table = 'user';
+    class Aplicacao {
+        private static $table = 'aplicacao';
 
         public static function selectId(int $id) {
             $sql = 'SELECT * FROM '.self::$table.' WHERE id = :id';
             $stmt = Conexao::Inst()->prepare($sql);
             $stmt->bindValue(':id', $id);
             $stmt->execute();
-
-            if ($stmt->rowCount() > 0) {
-                return $stmt->fetch(\PDO::FETCH_ASSOC);
-            } else {
-                throw new \Exception("Nenhum usuário encontrado!");
-            }
+            return $stmt;
         }
 
         public static function selectAll() {
